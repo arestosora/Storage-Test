@@ -8,7 +8,7 @@ export class Config {
     constructor() {
         this.database = {
             host: process.env.HOST,
-            port: parseInt(process.env.PORT, 10),
+            port: parseInt(process.env.PORT, 10), // Cambiado para obtener el puerto desde una variable de entorno y parsearlo a número
             username: process.env.USER,
             password: process.env.PASS,
             database: process.env.DATABASE,

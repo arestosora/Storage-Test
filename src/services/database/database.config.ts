@@ -3,7 +3,6 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { Config } from '../../config';
 
-
 export class DatabaseConfig {
     static getDatabaseConfig(): TypeOrmModuleOptions {
         const config = Config.loadDatabaseConfig();
