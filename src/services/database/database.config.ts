@@ -3,20 +3,16 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { Config } from '../../config';
 
-const config = new Config();
 
 export class DatabaseConfig {
-  static getDatabaseConfig(): TypeOrmModuleOptions {
-    return {
-      type: 'postgres',
-      host: config.database.host,
-      port: config.database.port,
-      username: config.database.username,
-      password: config.database.password,
-      database: config.database.database,
-      autoLoadEntities: config.database.autoLoadEntities,
-      synchronize: config.database.synchronize,
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
-    };
-  }
+    static getDatabaseConfig(): TypeOrmModuleOptions {
+        const config = Config.loadDatabaseConfig();
+        const Settings = config.getDatabaseConfig();
+
+        return {
+            type: 'postgres',
+            ...Settings,
+            entities: [__dirname + '/**/*.entity{.ts,.js}'],
+        };
+    }
 }
